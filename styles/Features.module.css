@@ -1,0 +1,276 @@
+/* styles/Features.module.css */
+.features {
+  padding: 10px 0;
+  background: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
+  /* Evita scroll horizontal causado por desbordes de hijos */
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  /* Bloquea desbordes laterales en composiciones internas */
+  overflow-x: hidden;
+}
+
+.header {
+  text-align: center;
+}
+
+.headerLine {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: #1134a3;
+}
+
+/* Un solo bloque de headerText (quitamos duplicados) */
+.headerText {
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 64px;
+  line-height: 50px;
+  color: #1134a3;
+  text-align: center;
+
+  /* Evita overflow del título */
+  max-width: 70%;
+  white-space: normal;           /* permite salto de línea si hace falta */
+  overflow-wrap: break-word;     /* corta palabras largas */
+  hyphens: auto;
+}
+
+/* ——— FIX FINAL: móvil grande y centrado ——— */
+@media (max-width: 768px) {
+  .features .headerLine .line { 
+    display: none !important; 
+  }
+
+  .features .headerText {
+    font-size: 30px !important;
+    line-height: 1.05 !important;
+    white-space: normal !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    max-width: 92% !important;
+  }
+}
+
+/* === Sección: Crea tus campañas y formularios === */
+.featureRow {
+  display: grid;
+  /* minmax evita que el contenido fuerce ancho y genere scroll horizontal */
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 48px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+/* (Si usas una fila invertida en algún momento) */
+.featureRowReverse {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  min-height: 420px;
+}
+
+.featureTextCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 44px;
+  height: 44px;
+}
+
+.featureIcon img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.featureTitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 53px;
+  color: #2d3553;
+  margin: 6px 0 8px 0;
+}
+
+.featureDescription {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #5a6275;
+  max-width: 560px;
+}
+
+/* === Columna de imagen (sin anchos rígidos que rompan móvil) === */
+.featureImageCol {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Altura visual como pediste */
+  min-height: 520px;
+
+  /* Flexibilidad para no generar scroll horizontal */
+  width: 100%;
+  max-width: 580px;  /* mantiene tu intención en desktop */
+  min-width: 0;
+  margin: 0 auto;    /* centramos el bloque dentro de su grid-cell */
+}
+
+.featureRowReverse .featureImageCol {
+  min-height: 420px;
+}
+
+/* Fondo azul */
+.featureImageCol::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: #e5efff;
+}
+
+/* === Imágenes ===
+   - Respetan su proporción (no deformamos)
+   - Se centran y tienen margen
+   - No provocan scroll horizontal: pueden encoger si falta espacio
+*/
+.featureImage,
+.featureImage2,
+.featureImage3 {
+  position: relative;
+  display: block;
+
+  /* Mantener proporción original del archivo y del width/height del JSX */
+  height: auto;
+
+  /* Se reduce si el contenedor es más estrecho, pero nunca crece más de su caja */
+  max-width: calc(100% - 40px);   /* “aire” lateral */
+  margin: 20px auto;              /* centrada con margen vertical */
+
+  border-radius: 8px;
+  box-shadow: 0 10px 18px rgba(17, 24, 39, 0.15);
+  object-fit: contain;            /* no recorta, no deforma */
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .featureRow,
+  .featureRowReverse {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .featureImageCol {
+    order: 2; /* imagen debajo en tablet/móvil */
+    max-width: 100%;
+    min-height: 360px;
+  }
+  .featureTextCol {
+    order: 1;
+    text-align: left;
+  }
+  .featureTitle {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  .featureTitle {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+  .featureDescription {
+    font-size: 15px;
+  }
+  .featureIcon {
+    width: 36px;
+    height: 36px;
+  }
+  .featureImageCol {
+    min-height: 300px;
+  }
+  .featureImage,
+  .featureImage2,
+  .featureImage3 {
+    max-width: calc(100% - 24px);
+    margin: 18px auto;
+  }
+  .featureImageCol::before {
+    border-radius: 16px;
+  }
+}
+
+/* ===== Tarjetas (si usas composiciones flotantes) ===== */
+.featureCards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  /* Si las usas como canvas absoluto dentro del panel azul: */
+  position: relative;
+  width: 100%;
+  max-width: 580px;  /* conserva tu intención sin romper móvil */
+  height: 350px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(17, 24, 39, 0.1);
+
+  /* Si las posicionas absolutas */
+  position: absolute;
+  border-radius: 12px;
+  box-shadow: 0 10px 18px rgba(17,24,39,0.12);
+}
+
+/* Posiciones de ejemplo */
+.card1 { top: 12px; left: 10px; transform: rotate(-2deg); width: 36%; }
+.card2 { top: 70px; left: 28%; transform: rotate(1deg);  width: 36%; }
+.card3 { top: 120px; left: 58%; transform: rotate(-1deg); width: 36%; }
+
+@media (max-width: 1024px) {
+  .featureRowReverse .featureImageCol {
+    order: -1; /* imagen encima en tablet/móvil */
+  }
+}
+
+@media (max-width: 640px) {
+  .featureRowReverse .featureImageCol {
+    min-height: 380px;
+    padding: 22px 18px;
+  }
+  .featureCards {
+    max-width: 420px;
+    height: 300px;
+  }
+  .card1 { top: 6px;  left: 6px;  width: 48%; }
+  .card2 { top: 70px; left: 40%; width: 48%; }
+  .card3 { top: 100px; left: 22%; width: 50%; }
+}

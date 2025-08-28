@@ -1,0 +1,479 @@
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: white;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  padding-top: 90px;
+  box-sizing: border-box;
+}
+.backgroundWaves {
+  position: absolute;
+  
+  right: 0;
+  bottom: 0;              /* da altura al contenedor: = 100% del .hero */
+  width: min(42vw, 520px);/* ocupa una fracción a la derecha */
+  height: 90%;           /* necesario para <Image fill /> */
+  z-index: 0;
+  opacity: 0.6;
+  pointer-events: none;   /* no bloquea clicks del contenido */
+}
+
+/* Opcional: ajustes responsive */
+@media (max-width: 1024px) {
+  .backgroundWaves { width: 48vw; }
+}
+@media (max-width: 640px) {
+  .backgroundWaves { width: 60vw; opacity: 0.5; }
+}
+
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 clamp(15px, 4vw, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.headerTopRow {
+  display: none;
+}
+
+.logo {
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  flex: 1;
+  justify-content: center;
+  max-width: calc(100% - 300px);
+}
+
+.nav {
+  display: flex;
+  gap: clamp(15px, 2.5vw, 30px);
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: clamp(13px, 1.4vw, 16px);
+  transition: color 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.navLink:hover {
+  color: #00d084;
+}
+
+.loginBtn {
+  background: #1134A3;
+  color: white;
+  border: none;
+  padding: clamp(10px, 1.5vw, 12px) clamp(18px, 2.5vw, 24px);
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: clamp(12px, 1.3vw, 14px);
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  flex-shrink: 0;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.loginBtn:hover {
+  background: #0a2374;
+  transform: translateY(-2px);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 20px 0;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding-left: clamp(15px, 4vw, 50px);
+  padding-right: clamp(15px, 4vw, 50px);
+  box-sizing: border-box;
+}
+
+.textContent {
+  max-width: 600px;
+  margin-top: -100px;
+  width: 100%;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem); 
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  font-family: 'Inter', sans-serif;
+}
+
+.greenText {
+  color: #ff6801;
+}
+
+.darkText {
+  color: #2d3748;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+}
+
+.ctaBtn {
+  background:#1134A3;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 15px;
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 208, 132, 0.3);
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.ctaBtn:hover {
+  background: #0a2374;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 208, 132, 0.4);
+}
+
+/* Desktop - mantiene estructura original */
+@media (min-width: 769px) {
+  .headerTopRow {
+    display: none;
+  }
+  
+  .container {
+    flex-direction: row;
+  }
+  
+  .logo {
+    order: 1;
+  }
+  
+  .navContainer {
+    order: 2;
+  }
+  
+  .loginBtn {
+    order: 3;
+  }
+}
+
+/* Tablet grande - 1200px */
+@media (max-width: 1200px) {
+  .navContainer {
+    max-width: calc(100% - 280px);
+  }
+  
+  .nav {
+    gap: clamp(12px, 2vw, 25px);
+  }
+}
+
+/* Tablet - 1024px */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 30px;
+  }
+  
+  .navContainer {
+    max-width: calc(100% - 260px);
+  }
+  
+  .nav {
+    gap: 20px;
+  }
+  
+  .heroContent {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+/* Tablet pequeña - 768px */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 120px; /* Espacio para header de 2 filas */
+    overflow-x: hidden;
+  }
+  
+  .header {
+    padding: 15px 0;
+    height: auto;
+  }
+  
+  .container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px;
+    align-items: stretch;
+  }
+  
+  /* Muestra la estructura de 2 filas en móviles */
+  .headerTopRow {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* Oculta elementos originales en mobile */
+  .container > .logo,
+  .container > .loginBtn {
+    display: none;
+  }
+  
+  /* Segunda fila: Navegación centrada */
+  .navContainer {
+    width: 100%;
+    max-width: none;
+    justify-content: center;
+    margin: 0;
+  }
+  
+  .nav {
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .heroContent {
+    text-align: center;
+    padding: 30px 20px;
+    min-height: calc(100vh - 120px);
+  }
+  
+  .textContent {
+    max-width: 100%;
+    margin-top: -50px;
+  }
+}
+
+/* Móvil - 480px */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 140px;
+    overflow-x: hidden;
+  }
+  
+  .header {
+    padding: 12px 0;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .headerTopRow {
+    margin-bottom: 12px;
+  }
+  
+  .logo img {
+    width: 120px !important;
+    height: 32px !important;
+  }
+  
+  .loginBtn {
+    padding: 10px 18px;
+    font-size: 12px;
+  }
+  
+  .navContainer {
+    margin-top: 10px;
+  }
+  
+  .nav {
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .navLink {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+  
+  .heroContent {
+    padding: 20px 15px;
+    min-height: calc(100vh - 140px);
+  }
+  
+  .textContent {
+    margin-top: -30px;
+  }
+  
+  .subtitle {
+    margin-bottom: 30px;
+  }
+  
+  .ctaBtn {
+    padding: 14px 28px;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Móvil muy pequeño - 360px */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .headerTopRow {
+    margin-bottom: 10px;
+  }
+  
+  .logo img {
+    width: 100px !important;
+    height: 26px !important;
+  }
+  
+  .loginBtn {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+  
+  .heroContent {
+    padding: 20px 10px;
+  }
+  
+  .nav {
+    gap: 12px;
+  }
+  
+  .navLink {
+    font-size: 13px;
+    padding: 4px 6px;
+  }
+  
+  .ctaBtn {
+    padding: 12px 24px;
+    font-size: 14px;
+    max-width: 260px;
+  }
+}
+
+/* Landscape móvil */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    padding-top: 80px;
+  }
+  
+  .header {
+    padding: 8px 0;
+  }
+  
+  .container {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .headerTopRow {
+    display: none !important;
+  }
+  
+  .container > .logo,
+  .container > .loginBtn {
+    display: block;
+  }
+  
+  .navContainer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: auto;
+  }
+  
+  .nav {
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: nowrap;
+  }
+  
+  .loginBtn {
+    margin-left: auto;
+  }
+  
+  .heroContent {
+    min-height: calc(100vh - 80px);
+    padding: 15px 20px;
+  }
+  
+  .textContent {
+    margin-top: -80px;
+  }
+  
+  .title {
+    margin-bottom: 15px;
+  }
+  
+  .subtitle {
+    margin-bottom: 25px;
+  }
+}
+
+/* Para pantallas muy anchas */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+    padding: 0 60px;
+  }
+  
+  .heroContent {
+    max-width: 1400px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
