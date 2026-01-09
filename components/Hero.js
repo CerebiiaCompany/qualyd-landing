@@ -7,13 +7,16 @@ const Hero = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const timeoutRef = useRef(null);
+  const textContentRef = useRef(null);
+  const imageContentRef = useRef(null);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     // Marcar que la carga inicial terminó después de la animación
     if (isInitialLoad) {
       timeoutRef.current = setTimeout(() => {
         setIsInitialLoad(false);
-      }, 800); // Tiempo de la animación inicial
+      }, 700); // Tiempo de la animación inicial del navbar
     }
 
     return () => {
@@ -22,6 +25,48 @@ const Hero = () => {
       }
     };
   }, [isInitialLoad]);
+
+  // Animaciones basadas en scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Intersection Observer para animaciones al entrar en viewport
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.animateIn);
+        }
+      });
+    }, observerOptions);
+
+    if (textContentRef.current) {
+      observer.observe(textContentRef.current);
+    }
+    if (imageContentRef.current) {
+      observer.observe(imageContentRef.current);
+    }
+
+    return () => {
+      if (textContentRef.current) {
+        observer.unobserve(textContentRef.current);
+      }
+      if (imageContentRef.current) {
+        observer.unobserve(imageContentRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     // No hacer nada durante la carga inicial
@@ -122,14 +167,21 @@ const Hero = () => {
       {/* Contenido principal */}
       <div className={styles.heroContent}>
         <div className={styles.heroContainer}>
-          <div className={styles.textContent}>
+          <div 
+            ref={textContentRef}
+            className={`${styles.textContent} ${styles.fadeInUp}`}
+            style={{
+              transform: `translateY(${Math.min(scrollY * 0.3, 50)}px)`,
+              opacity: 1 - Math.min(scrollY / 300, 0.3)
+            }}
+          >
             <h1 className={styles.title}>
-              <span className={styles.orangeText}>Optimiza la calidad y</span>
+              <span className={`${styles.orangeText} ${styles.titleWord1}`}>Optimiza la calidad y</span>
               <br />
-              <span className={styles.blueText}>el desempeño de tu organización</span>
+              <span className={`${styles.blueText} ${styles.titleWord2}`}>el desempeño de tu organización</span>
             </h1>
 
-            <p className={styles.subtitle}>
+            <p className={`${styles.subtitle} ${styles.subtitleFade}`}>
               <strong>Cerebiia Calidad</strong> es una plataforma web de <strong>control de calidad</strong> diseñada para <strong>gestionar, supervisar y optimizar</strong> los procesos operativos y de atención al cliente. Permite registrar, evaluar y analizar el desempeño de los agentes en tiempo real, impulsando decisiones basadas en datos y fortaleciendo la <strong>productividad del equipo</strong>.
             </p>
 
@@ -137,13 +189,20 @@ const Hero = () => {
               onClick={() =>
                 (window.location.href = "#contacto")
               }
-              className={styles.ctaBtn}
+              className={`${styles.ctaBtn} ${styles.buttonFade}`}
             >
               Solicitar demo
             </button>
           </div>
 
-          <div className={styles.imageContent}>
+          <div 
+            ref={imageContentRef}
+            className={`${styles.imageContent} ${styles.fadeInRight}`}
+            style={{
+              transform: `translateX(${Math.min(scrollY * 0.2, 30)}px) translateY(${Math.min(scrollY * 0.1, 20)}px)`,
+              opacity: 1 - Math.min(scrollY / 400, 0.2)
+            }}
+          >
             <div className={styles.heroImage}>
               <img
                 src="/imagen.png"
