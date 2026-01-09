@@ -1,7 +1,6 @@
 // components/Benefits.js
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import ScrollAnimation from './ScrollAnimation';
 import styles from '../styles/Benefits.module.css';
 
 const Benefits = () => {
@@ -52,17 +51,15 @@ const Benefits = () => {
   return (
     <section className={styles.benefits}>
       <div className={styles.container}>
-        <ScrollAnimation animation="fadeInUp" delay={0}>
-          <div className={styles.header}>
-            <h2 className={styles.title}>
-              <span className={styles.orangeText}>Beneficios</span>{' '}
-              <span className={styles.darkText}>Clave para Tu Empresa</span>
-            </h2>
-            <p className={styles.subtitle}>
-              Fortalece tus procesos de evaluación y control de calidad con una plataforma que impulsa la eficiencia operativa, la mejora continua y una atención al cliente de alto nivel.
-            </p>
-          </div>
-        </ScrollAnimation>
+        <div className={styles.header}>
+          <h2 className={styles.title}>
+            <span className={styles.orangeText}>Beneficios</span>{' '}
+            <span className={styles.darkText}>Clave para Tu Empresa</span>
+          </h2>
+          <p className={styles.subtitle}>
+            Fortalece tus procesos de evaluación y control de calidad con una plataforma que impulsa la eficiencia operativa, la mejora continua y una atención al cliente de alto nivel.
+          </p>
+        </div>
 
         <div className={styles.sliderContainer}>
           <div 
