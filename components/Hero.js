@@ -1,53 +1,81 @@
 // components/Hero.js
-import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Hero.module.css";
 
 const Hero = () => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    // Marcar que la carga inicial terminó después de la animación
+    if (isInitialLoad) {
+      timeoutRef.current = setTimeout(() => {
+        setIsInitialLoad(false);
+      }, 800); // Tiempo de la animación inicial
+    }
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [isInitialLoad]);
+
+  useEffect(() => {
+    // No hacer nada durante la carga inicial
+    if (isInitialLoad) return;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Si estamos en la parte superior, siempre mostrar el navbar
+      if (currentScrollY < 50) {
+        setIsVisible(true);
+      } else {
+        // Si scrolleamos hacia abajo, ocultar
+        // Si scrolleamos hacia arriba, mostrar
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsVisible(false);
+        } else if (currentScrollY < lastScrollY) {
+          setIsVisible(true);
+        }
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    // Throttle para mejorar el rendimiento
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", throttledHandleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", throttledHandleScroll);
+    };
+  }, [lastScrollY, isInitialLoad]);
+
   return (
     <section className={styles.hero}>
-      {/* Fondo con ondas */}
-      <div className={styles.backgroundWaves}>
-        <Image
-          src="/imagen.png"
-          alt="Background waves"
-          fill
-          style={{ objectFit: "contain" }}
-          priority
-        />
-      </div>
-
       {/* Header/Navbar */}
-      <header className={styles.header}>
+      <header className={`${styles.header} ${isVisible ? styles.headerVisible : styles.headerHidden}`}>
         <div className={styles.container}>
-          {/* Nueva estructura para móviles: Logo y botón en la misma fila */}
-          <div className={styles.headerTopRow}>
-            <div className={styles.logo}>
-              <Image
-                src="/logo.png"
-                alt="Cerebiia Transcript"
-                width={150}
-                height={40}
-                priority
-              />
-            </div>
-            <button
-              onClick={() =>
-                (window.location.href = "https://tu-url-externa.com")
-              }
-              className={styles.loginBtn}
-            >
-              Inicio de sesión
-            </button>
-          </div>
-
-          {/* Elementos originales para desktop */}
+          {/* Logo */}
           <div className={styles.logo}>
-            <Image
+            <img
               src="/logos.png"
               alt="Cerebiia Transcript"
-              width={150}
-              height={40}
-              priority
+              className={styles.logoImg}
             />
           </div>
 
@@ -60,8 +88,8 @@ const Hero = () => {
               <a href="#servicios" className={styles.navLink}>
                 Servicios
               </a>
-              <a href="#precios" className={styles.navLink}>
-                Precios
+              <a href="#servicios" className={styles.navLink}>
+                Funciones
               </a>
               <a href="#contacto" className={styles.navLink}>
                 Contacto
@@ -69,45 +97,62 @@ const Hero = () => {
             </nav>
           </div>
 
-          {/* Botón de login a la derecha */}
-          <button
-            onClick={() =>
-              (window.location.href = "https://calidad.cerebiia.com/")
-            }
-            className={styles.loginBtn}
-          >
-            Inicio de sesión
-          </button>
+          {/* Botones a la derecha */}
+          <div className={styles.buttonsContainer}>
+            <button
+              onClick={() =>
+                (window.location.href = "https://calidad.cerebiia.com/")
+              }
+              className={styles.loginBtn}
+            >
+              Inicio de sesión
+            </button>
+            <button
+              onClick={() =>
+                (window.location.href = "#contacto")
+              }
+              className={styles.quoteBtn}
+            >
+              Cotizar
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Contenido principal */}
       <div className={styles.heroContent}>
-        <div className={styles.container}>
+        <div className={styles.heroContainer}>
           <div className={styles.textContent}>
             <h1 className={styles.title}>
-              <span className={styles.greenText}>Automatiza</span>
-              <span className={styles.darkText}> el control</span>
+              <span className={styles.orangeText}>Optimiza la calidad y</span>
               <br />
-              <span className={styles.darkText}> de calidad en tu</span>
-              <br />
-              <span className={styles.darkText}>empresa</span>
+              <span className={styles.blueText}>el desempeño de tu organización</span>
             </h1>
 
             <p className={styles.subtitle}>
-              Protege la reputación de tu marca y mejora la satisfacción del
-              cliente con calidad certificada, procesos impecables, cumple
-              normas ISO, reduce errores y ahorra tiempo.
+              <strong>Cerebiia Calidad</strong> es una plataforma web de <strong>control de calidad</strong> diseñada para <strong>gestionar, supervisar y optimizar</strong> los procesos operativos y de atención al cliente. Permite registrar, evaluar y analizar el desempeño de los agentes en tiempo real, impulsando decisiones basadas en datos y fortaleciendo la <strong>productividad del equipo</strong>.
             </p>
 
             <button
               onClick={() =>
-                (window.location.href = "https://calidad.cerebiia.com/")
+                (window.location.href = "#contacto")
               }
               className={styles.ctaBtn}
             >
-              Descubre nuestros servicios
+              Solicitar demo
             </button>
+          </div>
+
+          <div className={styles.imageContent}>
+            <div className={styles.heroImage}>
+              <img
+                src="/imagen.png"
+                alt="Hombre apuntando hacia el texto"
+                className={styles.heroImageImg}
+              />
+              {/* Línea horizontal azul */}
+              <div className={styles.bottomLine}></div>
+            </div>
           </div>
         </div>
       </div>
