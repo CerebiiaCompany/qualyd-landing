@@ -4,6 +4,7 @@ import Features from "../components/Features";
 import Features2 from "../components/Features2";
 import Pricing from "../components/Pricing";
 import Footer from "../components/Footer";
+import ScrollAnimation from "../components/ScrollAnimation";
 
 export default function Home() {
   return (
@@ -13,20 +14,30 @@ export default function Home() {
       </section>
 
       <section id="beneficios">
-        <Benefits />
+        <ScrollAnimation animation="fadeInUp" delay={0}>
+          <Benefits />
+        </ScrollAnimation>
       </section>
 
       <section id="servicios">
-        <Features />
-        <Features2 />
+        <ScrollAnimation animation="fadeInUp" delay={0}>
+          <Features />
+        </ScrollAnimation>
+        <ScrollAnimation animation="fadeInUp" delay={100}>
+          <Features2 />
+        </ScrollAnimation>
       </section>
 
       <section id="precios">
-        <Pricing />
+        <ScrollAnimation animation="fadeInUp" delay={0}>
+          <Pricing />
+        </ScrollAnimation>
       </section>
 
       <section id="contacto">
-        <Footer />
+        <ScrollAnimation animation="fadeInUp" delay={0}>
+          <Footer />
+        </ScrollAnimation>
       </section>
     </div>
   );

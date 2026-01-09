@@ -1,5 +1,6 @@
 // components/Pricing.js
 import { useState } from 'react';
+import ScrollAnimation from './ScrollAnimation';
 import styles from '../styles/Pricing.module.css';
 
 export default function Pricing() {
@@ -33,19 +34,22 @@ export default function Pricing() {
   return (
     <section className={styles.pricing}>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>
-            Transforma la <span className={styles.orangeText}>gestión de calidad</span> en tu empresa
-          </h2>
-          <p className={styles.subtitle}>
-            Evaluaciones más eficientes, profesionales y alineadas con tus estándares para impulsar la excelencia y la satisfacción del cliente.
-          </p>
-          <p className={styles.description}>
-            Cotiza nuestro servicio según la cantidad de usuarios y el plan mensual que mejor se adapte a tus necesidades.
-          </p>
-        </div>
+        <ScrollAnimation animation="fadeInUp" delay={0}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>
+              Transforma la <span className={styles.orangeText}>gestión de calidad</span> en tu empresa
+            </h2>
+            <p className={styles.subtitle}>
+              Evaluaciones más eficientes, profesionales y alineadas con tus estándares para impulsar la excelencia y la satisfacción del cliente.
+            </p>
+            <p className={styles.description}>
+              Cotiza nuestro servicio según la cantidad de usuarios y el plan mensual que mejor se adapte a tus necesidades.
+            </p>
+          </div>
+        </ScrollAnimation>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <ScrollAnimation animation="fadeInUp" delay={200}>
+          <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formRow}>
             <div className={styles.formGroup}>
               <label htmlFor="nombres">Nombre(s):</label>
@@ -177,6 +181,7 @@ export default function Pricing() {
             </svg>
           </button>
         </form>
+        </ScrollAnimation>
       </div>
     </section>
   );

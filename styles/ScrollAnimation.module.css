@@ -1,0 +1,112 @@
+/* styles/ScrollAnimation.module.css */
+
+.scrollAnimation {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform, filter;
+}
+
+.scrollAnimation.visible {
+  opacity: 1;
+}
+
+.scrollAnimation.hidden {
+  opacity: 0;
+}
+
+/* Fade In Up */
+.fadeInUp {
+  transform: translateY(30px);
+}
+
+.fadeInUp.visible {
+  transform: translateY(0);
+}
+
+/* Fade In Down */
+.fadeInDown {
+  transform: translateY(-30px);
+}
+
+.fadeInDown.visible {
+  transform: translateY(0);
+}
+
+/* Fade In Left */
+.fadeInLeft {
+  transform: translateX(-30px);
+}
+
+.fadeInLeft.visible {
+  transform: translateX(0);
+}
+
+/* Fade In Right */
+.fadeInRight {
+  transform: translateX(30px);
+}
+
+.fadeInRight.visible {
+  transform: translateX(0);
+}
+
+/* Fade In */
+.fadeIn {
+  transform: none;
+}
+
+/* Scale In */
+.scaleIn {
+  transform: scale(0.9);
+}
+
+.scaleIn.visible {
+  transform: scale(1);
+}
+
+/* Zoom In */
+.zoomIn {
+  transform: scale(0.8);
+}
+
+.zoomIn.visible {
+  transform: scale(1);
+}
+
+/* Slide Up with Fade */
+.slideUpFade {
+  transform: translateY(50px);
+}
+
+.slideUpFade.visible {
+  transform: translateY(0);
+}
+
+/* Slide Down with Fade */
+.slideDownFade {
+  transform: translateY(-50px);
+}
+
+.slideDownFade.visible {
+  transform: translateY(0);
+}
+
+/* Rotate In */
+.rotateIn {
+  transform: rotate(-5deg) scale(0.95);
+}
+
+.rotateIn.visible {
+  transform: rotate(0deg) scale(1);
+}
+
+/* Blur In */
+.blurIn {
+  filter: blur(10px);
+}
+
+.blurIn.visible {
+  filter: blur(0);
+}
