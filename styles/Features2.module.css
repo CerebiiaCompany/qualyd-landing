@@ -1,22 +1,24 @@
 /* styles/Features2.module.css */
 .features2 {
-  padding: 10px 100px; /* Más compacto */
+  padding: 80px 0;
   background: #ffffff;
   position: relative;
   overflow: hidden;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 clamp(20px, 5vw, 80px);
+  position: relative;
 }
 
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px; /* Más compacto */
+  gap: clamp(40px, 6vw, 80px);
   align-items: center;
+  margin-bottom: 40px;
 }
 
 /* Contenido de texto */
@@ -26,94 +28,108 @@
 
 .badge {
   display: inline-block;
-  color: #ff6801;
-  padding: 4px 10px;
-  border-radius: 16px;
-  font-family: Inter, sans-serif;
+  color: #FF6801;
+  font-family: var(--font-inter), sans-serif;
   font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: 0%;
-  margin-bottom: 8px; /* Más compacto */
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.4;
+  letter-spacing: 0;
+  margin-bottom: 16px;
 }
 
 .title {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  font-weight: 600;
-  font-size: 48px; /* Tamaño original mantenido */
-  line-height: 57px; /* Line-height más compacto */
-  letter-spacing: 0%;
-  color: #1a1a1a;
-  margin-bottom: 8px; /* Más compacto */
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #2d3748;
+  margin-bottom: 24px;
 }
 
 .description {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-weight: 400;
-  font-size: 20px; /* Tamaño original mantenido */
-  line-height: 24px; /* Line-height más compacto */
-  letter-spacing: 0%;
-  color: #666666;
-  margin-bottom: 16px; /* Más compacto */
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: #4a5568;
+  margin-bottom: 40px;
+  max-width: 580px;
 }
 
 /* Lista de características */
 .featuresList {
-  margin-bottom: 16px; /* Más compacto */
+  margin-bottom: 40px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.featureItem:last-child {
+  margin-bottom: 0;
 }
 
 
 
 .iconWrapper {
-  width: 32px;         /* más pequeño que antes */
-  height: 32px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background-color: #FF6801;
+  border-radius: 50%;
+  padding: 10px;
 }
 
 .iconWrapper img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .featureText {
-  width: 100%;
+  flex: 1;
 }
 
 .featureText h3 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-weight: 600;
-  font-size: 20px; /* Tamaño original mantenido */
-  line-height: 24px; /* Line-height más compacto */
-  letter-spacing: 0%;
-  color: #1a1a1a;
-  margin-bottom: 2px; /* Más compacto */
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: #2d3748;
+  margin-bottom: 8px;
 }
 
 .featureText p {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  font-weight: 600;
-  font-size: 20px; /* Tamaño original mantenido */
-  line-height: 24px; /* Line-height más compacto */
-  letter-spacing: 0%;
-  color: #666666;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.6;
+  letter-spacing: 0;
+  color: #4a5568;
 }
 
 /* Botón CTA */
 .ctaButton {
-  background: #1134a3;
+  background: #1134A3;
   color: white;
   border: none;
-  padding: 12px 24px; /* Tamaño original mantenido */
+  padding: 14px 28px;
   border-radius: 8px;
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-size: 16px; /* Tamaño original mantenido */
-  line-height: 20px; /* Line-height más compacto */
-  letter-spacing: 0%;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 600;
+  font-size: clamp(15px, 1.7vw, 16px);
+  line-height: 1.5;
+  letter-spacing: 0;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -122,9 +138,9 @@
 }
 
 .ctaButton:hover {
-  background: #059669;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  background: #0d2a7a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(17, 52, 163, 0.3);
 }
 
 .ctaButton svg {
@@ -142,15 +158,25 @@
 
 .imageWrapper {
   position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .image {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: contain;
+}
+
+.bottomLine {
+  width: 100%;
+  height: 2px;
+  background: #1134A3;
+  margin-top: -2px;
+  align-self: flex-end;
 }
 
 /* Responsive Design */

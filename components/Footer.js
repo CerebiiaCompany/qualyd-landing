@@ -1,4 +1,3 @@
-
 import styles from '../styles/Footer.module.css';
 import Image from 'next/image';
 
@@ -7,26 +6,23 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.footerContent}>
-          
+          {/* Columna izquierda - Logo y redes sociales */}
           <div className={styles.logoSection}>
-            <div className={styles.logo}>
-              <div className={styles.logoIcon}>
-                <div className={styles.brain}>
-                  <div className={styles.logo}>
-        <Image
-          src="/logos.png"
-          alt="Cerebiia Calidad"
-          width={150}
-          height={40}
-          priority
-        />
-      </div>
-                </div>
-              </div>
-      
+            <div className={styles.logoContainer}>
+              <Image
+                src="/logos.png"
+                alt="Cerebiia Calidad"
+                width={180}
+                height={50}
+                priority
+                className={styles.logo}
+              />
             </div>
-            <p className={styles.description}>
-              © Cerebiia Calidad, todos los derechos reservados
+            <p className={styles.slogan}>
+              Inspiramos transformación con humanidad.
+            </p>
+            <p className={styles.copyright}>
+              Copyright © 2026 Cerebiia Calidad | Powered by Cerebiia
             </p>
             
             {/* Social Media Icons */}
@@ -54,22 +50,22 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Cerebiia Transcript */}
+          {/* Cerebiia SaaS */}
           <div className={styles.footerColumn}>
-            <h3 className={styles.columnTitle}>Cerebiia Transcript</h3>
+            <h3 className={styles.columnTitle}>Cerebiia SaaS</h3>
             <ul className={styles.footerLinks}>
-              <li><a href="#inicio" className={styles.footerLink}>Inicio</a></li>
-              <li><a href="#nosotros" className={styles.footerLink}>Sobre nosotros</a></li>
-              <li><a href="#planes" className={styles.footerLink}>Planes y servicios</a></li>
+              <li><a href="#" className={styles.footerLink}>Calidad</a></li>
+              <li><a href="#" className={styles.footerLink}>RRHH</a></li>
+              <li><a href="#" className={styles.footerLink}>Data 1581</a></li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Enlaces Legales */}
           <div className={styles.footerColumn}>
-            <h3 className={styles.columnTitle}>Legal</h3>
+            <h3 className={styles.columnTitle}>Enlaces Legales</h3>
             <ul className={styles.footerLinks}>
-              <li><a href="#terminos" className={styles.footerLink}>Términos y condiciones</a></li>
-              <li><a href="#privacidad" className={styles.footerLink}>Política de privacidad</a></li>
+              <li><a href="#" className={styles.footerLink}>Política de Privacidad</a></li>
+              <li><a href="#" className={styles.footerLink}>Términos y Condiciones</a></li>
             </ul>
           </div>
 
@@ -77,17 +73,19 @@ export default function Footer() {
           <div className={styles.footerColumn}>
             <h3 className={styles.columnTitle}>Contacto</h3>
             <ul className={styles.footerLinks}>
-              <li>
-                <a href="mailto:contactotranscript.com" className={styles.footerLink}>
-                  contactotranscript.com
+              <li className={styles.contactItem}>
+                Calle 6 #12E-45, Barrio Colsag, Cúcuta, Colombia
+              </li>
+              <li className={styles.contactItem}>
+                <a href="tel:+573138488257" className={styles.footerLink}>
+                  +57 313 8488257
                 </a>
               </li>
-              <li>
-                <a href="tel:+57000000000" className={styles.footerLink}>
-                  +57 000000000
+              <li className={styles.contactItem}>
+                <a href="mailto:contacto@cerebiia.com" className={styles.footerLink}>
+                  contacto@cerebiia.com
                 </a>
               </li>
-              <li className={styles.footerLink}>Cúcuta, Colombia</li>
             </ul>
           </div>
         </div>

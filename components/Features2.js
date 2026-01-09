@@ -10,15 +10,15 @@ export default function Features2() {
           {/* Contenido de texto */}
           <div className={styles.textContent}>
             <div className={styles.badge}>
-              Calidad en tus proyectos
+              Eleva la eficiencia y la calidad en cada proceso.
             </div>
             
             <h2 className={styles.title}>
-              ¿Por qué usar Cerebiia Calidad?
+              ¿Por qué elegir Cerebiia Calidad?
             </h2>
             
             <p className={styles.description}>
-              Nuestro software de gestión de calidad responde a los desafíos principales de las operaciones de control y aseguramiento de calidad. Es personalizable y fácil de usar.
+              Cerebiia Calidad es una solución integral diseñada para optimizar los procesos de control y evaluación en áreas de servicio al cliente y equipos operativos. Su enfoque basado en datos permite una supervisión más precisa, una retroalimentación efectiva y una toma de decisiones inteligente que fortalece el desempeño de tus equipos.
             </p>
 
             {/* Lista de características */}
@@ -27,14 +27,14 @@ export default function Features2() {
                 <div className={styles.iconWrapper}>
                   <Image
                     src="/img5.png"
-                    alt="Estandariza"
+                    alt="Supervisión"
                     width={48}
                     height={48}
                   />
                 </div>
                 <div className={styles.featureText}>
-                  <h3>Estandariza</h3>
-                  <p>la manera en que los colaboradores trabajan para garantizar la calidad de todos los productos o servicios.</p>
+                  <h3>Supervisión y control de procesos o colaboradores</h3>
+                  <p>Monitorea el desempeño diario, detecta oportunidades de mejora y reduce errores operativos.</p>
                 </div>
               </div>
 
@@ -42,37 +42,22 @@ export default function Features2() {
                 <div className={styles.iconWrapper}>
                   <Image
                     src="/img6.png"
-                    alt="Asegura"
+                    alt="Evaluación"
                     width={48}
                     height={48}
                   />
                 </div>
                 <div className={styles.featureText}>
-                  <h3>Asegura</h3>
-                  <p>la trazabilidad de tus procesos. Así ahorras tiempo a la hora de auditorías y puedes detectar problemas a tiempo.</p>
-                </div>
-              </div>
-
-              <div className={styles.featureItem}>
-                <div className={styles.iconWrapper}>
-                  <Image
-                    src="/img7.png"
-                    alt="Mejora"
-                    width={48}
-                    height={48}
-                  />
-                </div>
-                <div className={styles.featureText}>
-                  <h3>Mejora</h3>
-                  <p>el seguimiento de indicadores de calidad. Kizeo Forms te proporciona datos confiables en tiempo real.</p>
+                  <h3>Evaluación y análisis de calidad</h3>
+                  <p>Registra, califica y analiza, fortaleciendo los procesos de retroalimentación y formación interna.</p>
                 </div>
               </div>
             </div>
 
             <button className={styles.ctaButton}>
-              Más información
+              Ver tutorial
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>
@@ -82,12 +67,14 @@ export default function Features2() {
             <div className={styles.imageWrapper}>
               <Image
                 src="/chica.png"
-                alt="Hombre usando smartphone para transcripción"
+                alt="Mujer usando laptop"
                 width={600}
                 height={500}
                 className={styles.image}
                 priority
               />
+              {/* Línea azul horizontal */}
+              <div className={styles.bottomLine}></div>
             </div>
           </div>
         </div>

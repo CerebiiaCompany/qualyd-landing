@@ -1,105 +1,182 @@
-import { useMemo, useState } from 'react';
+// components/Pricing.js
+import { useState } from 'react';
 import styles from '../styles/Pricing.module.css';
 
-const DURACIONES = [
-  { key: '1', label: '1 mes', meses: 1, desc: 0 },
-  { key: '3', label: '3 meses', meses: 3, desc: 0.05 },   // 5% off
-  { key: '12', label: '12 meses', meses: 12, desc: 0.15 }, // 15% off
-];
-
-const PRECIO_BASE_MENSUAL = 30000; // COP
-const PRECIO_USER_MENSUAL = 5000;  // COP
-
 export default function Pricing() {
-  const [duracion, setDuracion] = useState(DURACIONES[0].key);
+  const [formData, setFormData] = useState({
+    nombres: '',
+    apellidos: '',
+    identificacion: '',
+    correo: '',
+    celular: '',
+    contactoCorreo: true,
+    contactoWhatsApp: true,
+    recibirInfo: false,
+    privacidad: false,
+    terminos: false
+  });
 
-  const plan = useMemo(() => DURACIONES.find(d => d.key === duracion), [duracion]);
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
 
-  const precioPlanMes = useMemo(() => {
-    const p = PRECIO_BASE_MENSUAL * (1 - plan.desc);
-    return Math.round(p / 100) * 100;
-  }, [plan]);
-
-  const precioUsuarioMes = useMemo(() => PRECIO_USER_MENSUAL * (1 - plan.desc), [plan]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Aquí puedes agregar la lógica para enviar el formulario
+    console.log('Formulario enviado:', formData);
+  };
 
   return (
     <section className={styles.pricing}>
       <div className={styles.container}>
-        <header className={styles.header}>
+        <div className={styles.header}>
           <h2 className={styles.title}>
-            Transforma tu gestión de calidad hoy
-            <br />
-            <span className={styles.subTitle}>
-              Sin complicaciones, con <span className={styles.accent}>resultados inmediatos.</span>
-            </span>
+            Transforma la <span className={styles.orangeText}>gestión de calidad</span> en tu empresa
           </h2>
-
-          <div className={styles.selectorRow}>
-            <label htmlFor="duracion" className={styles.label}>Duración de la suscripción</label>
-            <select
-              id="duracion"
-              className={styles.select}
-              value={duracion}
-              onChange={(e) => setDuracion(e.target.value)}
-            >
-              {DURACIONES.map(d => (
-                <option key={d.key} value={d.key}>{d.label}</option>
-              ))}
-            </select>
-            {plan.desc > 0 && (
-              <span className={styles.badgeAhorro}>-{Math.round(plan.desc*100)}% ahorro</span>
-            )}
-          </div>
-        </header>
-
-        <div className={styles.cards}>
-          <article className={styles.card}>
-            <div className={styles.cardHeader}>
-              <h3 className={styles.cardTitle}>Plan mensual</h3>
-              <span className={styles.cardTag}>Ideal para comenzar</span>
-            </div>
-
-            <div className={styles.priceBlock}>
-              <span className={styles.from}>A partir de</span>
-              <div className={styles.price}>
-                ${precioPlanMes.toLocaleString('es-CO')} <span className={styles.period}>COP / mes</span>
-              </div>
-            </div>
-
-            <button className={styles.cta}>
-              Más información
-              <svg width="16" height="16" viewBox="0 0 24 24" className={styles.ctaIcon}>
-                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
-              </svg>
-            </button>
-
-            <ul className={styles.featuresList}>
-              <i className="fa-solid fa-check-circle"></i> Acceso completo al software de calidad. <br></br>
-              <i className="fa-solid fa-check-circle"></i> Incluye 5 usuarios activos. <br></br>
-              <i className="fa-solid fa-check-circle"></i> Formularios de evaluación personalizables. <br></br>
-              <i className="fa-solid fa-check-circle"></i> Reportes e indicadores en tiempo real. <br></br>
-              <i className="fa-solid fa-check-circle"></i> Soporte técnico prioritario. <br></br>
-              <i className="fa-solid fa-check-circle"></i> Renovación automática cada mes. <br></br>
-            </ul>
-          </article>
-
-          <article className={`${styles.card} ${styles.cardAddUsers}`}>
-            <div className={styles.cardHeader}>
-              <h3 className={styles.cardTitle}>Añadir usuarios</h3>
-            </div>
-
-            <div className={styles.addCircle}><i class="fa-solid fa-plus"></i></div>
-
-            <div className={styles.priceBlockAlt}>
-              <div className={styles.price}>
-                ${precioUsuarioMes.toLocaleString('es-CO')} <span className={styles.period}>COP</span>
-              </div>
-              <div className={styles.note}>por usuario / mes</div>
-            </div>
-
-            <div className={styles.dots}>…</div>
-          </article>
+          <p className={styles.subtitle}>
+            Evaluaciones más eficientes, profesionales y alineadas con tus estándares para impulsar la excelencia y la satisfacción del cliente.
+          </p>
+          <p className={styles.description}>
+            Cotiza nuestro servicio según la cantidad de usuarios y el plan mensual que mejor se adapte a tus necesidades.
+          </p>
         </div>
+
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="nombres">Nombre(s):</label>
+              <input
+                type="text"
+                id="nombres"
+                name="nombres"
+                value={formData.nombres}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="apellidos">Apellido(s):</label>
+              <input
+                type="text"
+                id="apellidos"
+                name="apellidos"
+                value={formData.apellidos}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="identificacion">Identificación:</label>
+              <input
+                type="text"
+                id="identificacion"
+                name="identificacion"
+                value={formData.identificacion}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="correo">Correo:</label>
+              <input
+                type="email"
+                id="correo"
+                name="correo"
+                value={formData.correo}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="celular">Celular:</label>
+              <input
+                type="tel"
+                id="celular"
+                name="celular"
+                value={formData.celular}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className={styles.contactPreference}>
+            <p className={styles.preferenceTitle}>¿Cómo prefieres que te contactemos?</p>
+            <div className={styles.checkboxGroup}>
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  name="contactoCorreo"
+                  checked={formData.contactoCorreo}
+                  onChange={handleChange}
+                />
+                <span>Correo</span>
+              </label>
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  name="contactoWhatsApp"
+                  checked={formData.contactoWhatsApp}
+                  onChange={handleChange}
+                />
+                <span>WhatsApp</span>
+              </label>
+            </div>
+          </div>
+
+          <div className={styles.consentSection}>
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                name="recibirInfo"
+                checked={formData.recibirInfo}
+                onChange={handleChange}
+              />
+              <span>Quiero recibir información vía email y WhatsApp sobre productos y servicios de Cerebiia</span>
+            </label>
+
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                name="privacidad"
+                checked={formData.privacidad}
+                onChange={handleChange}
+                required
+              />
+              <span>He leído y autorizo el tratamiento de mis datos personales de acuerdo con las finalidades indicadas en el aviso de privacidad y a la política de tratamiento de datos personales.</span>
+            </label>
+
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                name="terminos"
+                checked={formData.terminos}
+                onChange={handleChange}
+                required
+              />
+              <span>He leído y acepto los Términos y Condiciones del sitio web.</span>
+            </label>
+          </div>
+
+          <button type="submit" className={styles.submitButton}>
+            Solicitar cotización
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </form>
       </div>
     </section>
   );
