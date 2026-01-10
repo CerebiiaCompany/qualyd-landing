@@ -189,6 +189,87 @@
   transform: translateX(4px);
 }
 
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submitButton:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Mensajes de estado */
+.messageSuccess,
+.messageError {
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.95rem, 1.3vw, 1rem);
+  line-height: 1.5;
+  animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.messageSuccess {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.messageSuccess svg {
+  color: #059669;
+  flex-shrink: 0;
+}
+
+.messageError {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.messageError svg {
+  color: #dc2626;
+  flex-shrink: 0;
+}
+
+/* Campos deshabilitados */
+.formGroup input:disabled,
+.checkboxLabel input[type="checkbox"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f7fafc;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .pricing {

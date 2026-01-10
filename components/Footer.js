@@ -77,7 +77,7 @@ export default function Footer() {
                 Calle 6 #12E-45, Barrio Colsag, Cúcuta, Colombia
               </li>
               <li className={styles.contactItem}>
-                <a href="tel:+573138488257" className={styles.footerLink}>
+                <a href="https://wa.me/573138488257" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
                   +57 313 8488257
                 </a>
               </li>
