@@ -521,24 +521,29 @@
 /* Tablet pequeña - 768px */
 @media (max-width: 768px) {
   .hero {
-    padding-top: 140px; /* Espacio para header */
+    padding-top: 120px;
     overflow-x: hidden;
   }
   
   .header {
-    padding: 15px 0;
+    padding: 14px 0;
     height: auto;
   }
   
   .container {
     flex-direction: column;
-    gap: 15px;
-    padding: 0 20px;
+    gap: 12px;
+    padding: 0 16px;
     align-items: stretch;
   }
   
   .logo {
     order: 1;
+  }
+  
+  .logoImg {
+    width: 130px !important;
+    height: auto !important;
   }
   
   .navContainer {
@@ -550,37 +555,42 @@
   }
   
   .nav {
-    gap: 15px;
+    gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
+  }
+  
+  .navLink {
+    font-size: clamp(13px, 2.5vw, 15px);
+    padding: 6px 10px;
   }
   
   .buttonsContainer {
     order: 3;
     justify-content: center;
     width: 100%;
-    gap: 10px;
+    gap: 8px;
   }
   
   .loginBtn,
   .quoteBtn {
     flex: 1;
-    max-width: 150px;
+    max-width: 140px;
+    padding: 10px 16px;
+    font-size: clamp(12px, 2.5vw, 14px);
   }
   
   .heroContainer {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
     text-align: left;
     padding-bottom: 20px;
   }
   
   .heroContent {
-    padding: 30px 20px 0;
+    padding: 24px 16px 0;
     min-height: auto;
-    padding-left: 20px;
-    padding-right: 20px;
   }
   
   .textContent {
@@ -589,17 +599,24 @@
   }
   
   .title {
-    margin-bottom: 24px;
-    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    margin-bottom: 20px;
+    font-size: clamp(1.7rem, 6.5vw, 2.3rem);
+    line-height: 1.2;
   }
   
   .subtitle {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     max-width: 100%;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    line-height: 1.6;
   }
   
   .ctaBtn {
     align-self: flex-start;
+    padding: 12px 28px;
+    font-size: clamp(14px, 2.5vw, 15px);
+    width: auto;
+    max-width: 100%;
   }
   
   .imageContent {
@@ -609,6 +626,10 @@
   .heroImage {
     max-width: 100%;
     margin: 0 auto;
+  }
+  
+  .heroImageImg {
+    max-height: 500px;
   }
   
   .bottomLine {
@@ -621,7 +642,7 @@
 /* Móvil - 480px */
 @media (max-width: 480px) {
   .hero {
-    padding-top: 140px;
+    padding-top: 110px;
     overflow-x: hidden;
   }
   
@@ -630,47 +651,41 @@
   }
   
   .container {
-    padding: 0 15px;
+    padding: 0 12px;
+    gap: 10px;
   }
   
-  .headerTopRow {
-    margin-bottom: 12px;
-  }
-  
-  .logo img {
-    width: 120px !important;
-    height: 32px !important;
+  .logoImg {
+    width: 110px !important;
+    height: auto !important;
   }
   
   .loginBtn,
   .quoteBtn {
-    padding: 10px 18px;
-    font-size: 12px;
-  }
-  
-  .navContainer {
-    margin-top: 10px;
+    padding: 9px 14px;
+    font-size: clamp(11px, 3vw, 12px);
+    max-width: 120px;
   }
   
   .nav {
-    gap: 15px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
   }
   
   .navLink {
-    font-size: 14px;
+    font-size: clamp(12px, 3vw, 13px);
     padding: 5px 8px;
   }
   
   .heroContent {
-    padding: 20px 15px 0;
+    padding: 20px 12px 0;
     min-height: auto;
   }
   
   .heroContainer {
-    gap: 30px;
-    padding-bottom: 15px;
+    gap: 24px;
+    padding-bottom: 16px;
   }
   
   .textContent {
@@ -678,23 +693,31 @@
   }
   
   .title {
-    font-size: clamp(2rem, 6vw, 2.5rem);
-    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    margin-bottom: 16px;
+    line-height: 1.15;
   }
   
   .subtitle {
-    margin-bottom: 28px;
-    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    margin-bottom: 24px;
+    font-size: clamp(0.9rem, 3vw, 1.05rem);
+    line-height: 1.6;
   }
   
   .ctaBtn {
-    padding: 14px 32px;
+    padding: 12px 24px;
     width: 100%;
-    max-width: 280px;
+    max-width: 100%;
+    font-size: clamp(13px, 3vw, 14px);
+    justify-content: center;
   }
   
   .heroImage {
     max-width: 100%;
+  }
+  
+  .heroImageImg {
+    max-height: 400px;
   }
 }
 

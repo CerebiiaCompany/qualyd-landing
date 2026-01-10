@@ -5,6 +5,17 @@ import styles from '../styles/Benefits.module.css';
 
 const Benefits = () => {
   const [currentSlide, setCurrentSlide] = useState(2); // Iniciar con la tarjeta del medio (índice 2 de 5)
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const benefits = [
     {
@@ -65,7 +76,9 @@ const Benefits = () => {
           <div 
             className={styles.slider}
             style={{ 
-              transform: `translateX(calc(50% - ${currentSlide * (100 / 3)}% - ${currentSlide * 20}px - 16.666%))` 
+              transform: isMobile 
+                ? `translateX(calc(-${currentSlide * 100}%))`
+                : `translateX(calc(50% - ${currentSlide * (100 / 3)}% - ${currentSlide * 20}px - 16.666%))` 
             }}
           >
             {benefits.map((benefit, index) => {
