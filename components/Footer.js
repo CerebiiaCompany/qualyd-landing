@@ -27,7 +27,7 @@ export default function Footer() {
             
             {/* Social Media Icons */}
             <div className={styles.socialMedia}>
-              <a href="#" className={styles.socialLink} aria-label="Instagram">
+              <a href="https://www.instagram.com/cerebi.ia/" className={styles.socialLink} aria-label="Instagram">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" strokeWidth="2"/>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" strokeWidth="2"/>
@@ -35,7 +35,7 @@ export default function Footer() {
                 </svg>
               </a>
               
-              <a href="#" className={styles.socialLink} aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=61577837410404" className={styles.socialLink} aria-label="Facebook">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" strokeWidth="2"/>
                 </svg>
@@ -54,9 +54,9 @@ export default function Footer() {
           <div className={styles.footerColumn}>
             <h3 className={styles.columnTitle}>Cerebiia SaaS</h3>
             <ul className={styles.footerLinks}>
-              <li><a href="#" className={styles.footerLink}>Calidad</a></li>
-              <li><a href="#" className={styles.footerLink}>RRHH</a></li>
-              <li><a href="#" className={styles.footerLink}>Data 1581</a></li>
+              <li><a href="https://calidad.cerebiia.com/" className={styles.footerLink}>Calidad</a></li>
+              <li><a href="https://recursos-humanos.cerebiia.com/" className={styles.footerLink}>RRHH</a></li>
+              <li><a href="https://data.cerebiia.com.co/" className={styles.footerLink}>Data 1581</a></li>
             </ul>
           </div>
 
